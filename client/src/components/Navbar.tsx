@@ -1,42 +1,26 @@
 import { useState, useEffect } from 'react';
-import { BarChart3, Menu, X, ChevronRight } from 'lucide-react';
+import { BarChart3, Menu, X, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'wouter';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const navLinks = [
-    { name: 'Features', href: '#features' },
-    { name: 'How it Works', href: '#how-it-works' },
-    { name: 'About', href: '#about' },
+    { name: 'What are they saying?', href: '#features' },
+    { name: "How's it work?", href: '#how-it-works' },
+    { name: 'Who are we?', href: '#about' },
   ];
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-        isScrolled || isMobileMenuOpen 
-          ? 'bg-background/80 backdrop-blur-md border-white/10 py-3 shadow-lg' 
-          : 'bg-transparent border-transparent py-6'
-      }`}
-    >
+    <header className="bg-secondary w-full py-4">
       <div className="container flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-3 cursor-pointer group select-none">
-          <div className="bg-gradient-to-br from-primary to-indigo-600 p-2 rounded-lg text-white shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105">
-            <BarChart3 size={20} strokeWidth={3} />
+        <div className="flex items-center gap-2 cursor-pointer select-none">
+          <div className="bg-white p-1.5 rounded shadow-sm text-primary">
+            <BarChart3 size={24} strokeWidth={2.5} />
           </div>
-          <span className="text-lg font-bold tracking-tight text-white font-mono">
-            CommuniData<span className="text-primary">.io</span>
+          <span className="text-sm font-bold tracking-tight text-primary font-sans leading-tight">
+            CommuniData
           </span>
         </div>
 
@@ -46,23 +30,25 @@ const Navbar = () => {
             <a 
               key={link.name} 
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-white transition-colors relative group py-2"
+              className="text-sm font-bold text-primary hover:opacity-80 transition-opacity"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
-          <div className="h-4 w-px bg-white/10 mx-2"></div>
-          <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-white">Sign In</Button>
-          <Button size="sm" className="group">
-            Start Free
-            <ChevronRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
-          </Button>
         </nav>
+
+        {/* Right Actions */}
+        <div className="hidden md:flex items-center gap-2">
+          <Star size={16} className="text-red-500 fill-red-500" />
+          <Button variant="secondary" size="sm" className="bg-white text-primary hover:bg-white/90 font-bold shadow-sm rounded-full px-6">
+            Log in!
+          </Button>
+          <Star size={16} className="text-red-500 fill-red-500" />
+        </div>
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-muted-foreground hover:text-white p-2"
+          className="md:hidden text-primary p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -71,20 +57,19 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-4 animate-in slide-in-from-top-2 duration-200 shadow-2xl">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-100 p-6 flex flex-col gap-4 shadow-xl z-50">
            {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
-              className="text-base font-medium text-muted-foreground hover:text-primary py-3 border-b border-white/5"
+              className="text-base font-bold text-primary py-3 border-b border-slate-100"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}
             </a>
           ))}
           <div className="flex flex-col gap-3 mt-4">
-            <Button variant="outline" className="w-full">Log in</Button>
-            <Button className="w-full">Get Started</Button>
+            <Button className="w-full rounded-full font-bold">Log in!</Button>
           </div>
         </div>
       )}
