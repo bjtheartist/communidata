@@ -1,21 +1,21 @@
 import { useState } from 'react';
-import { LayoutDashboard, FileUp, Sparkles, Users, PieChart, ArrowUpRight, MessageSquare, Download } from 'lucide-react';
+import { LayoutDashboard, FileUp, Sparkles, Users, PieChart, ArrowUpRight, MessageSquare, Download, Search, BarChart2, Lightbulb, Handshake } from 'lucide-react';
 
 const Features = () => {
-  const [activeTab, setActiveTab] = useState('dashboards');
+  const [activeTab, setActiveTab] = useState('explore');
 
   const tabs = [
-    { id: 'dashboards', label: 'Dashboards', icon: LayoutDashboard },
-    { id: 'reporting', label: 'Reporting', icon: FileUp },
-    { id: 'insights', label: 'AI Insights', icon: Sparkles },
-    { id: 'advising', label: 'Advising', icon: Users },
+    { id: 'explore', label: 'Explore Data', icon: Search },
+    { id: 'analyze', label: 'Analyze Trends', icon: BarChart2 },
+    { id: 'act', label: 'Take Action', icon: Lightbulb },
+    { id: 'collaborate', label: 'Collaborate', icon: Handshake },
   ];
 
   const content: any = {
-    dashboards: {
-      title: "Real-time Community Pulse",
-      desc: "Visualize economic health instantly. Track new business registrations, employment rates, and industry shifts on a unified canvas.",
-      points: ["Customizable widgets", "Cross-referencing datasets", "Mobile-responsive views"],
+    explore: {
+      title: "Discover Your Community's Pulse",
+      desc: "Dive into a comprehensive view of your local economy. Easily find and visualize key metrics like business growth, employment rates, and industry diversity without getting lost in spreadsheets.",
+      points: ["Interactive maps & charts", "Search by sector or neighborhood", "Real-time data updates"],
       visual: (
         <div className="h-full w-full p-6 flex flex-col gap-4">
            <div className="flex gap-4">
@@ -51,10 +51,31 @@ const Features = () => {
         </div>
       )
     },
-    reporting: {
-      title: "Automated Impact Reports",
-      desc: "Turn data into documents. Generate grant-ready PDFs and shareholder presentations with a single click, populated with your latest metrics.",
-      points: ["One-click PDF export", "Grant proposal templates", "Scheduled email delivery"],
+    analyze: {
+      title: "Understand the 'Why' Behind the Numbers",
+      desc: "Go beyond raw data. Our tools help you identify patterns, spot anomalies, and understand the driving forces behind economic shifts in your community.",
+      points: ["Year-over-year comparisons", "AI-powered anomaly detection", "Customizable trend reports"],
+      visual: (
+        <div className="h-full w-full p-6 flex flex-col justify-center space-y-4">
+           <div className="bg-white border border-slate-100 rounded-2xl p-4 max-w-[85%] self-start rounded-tl-none shadow-sm">
+              <p className="text-slate-600 text-sm font-medium">Why did retail revenue drop in March?</p>
+           </div>
+           
+           <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 max-w-[90%] self-end rounded-tr-none relative shadow-sm">
+              <div className="absolute -top-3 -left-3 bg-primary text-white p-1.5 rounded-lg shadow-md">
+                 <Sparkles size={14} fill="white" />
+              </div>
+              <p className="text-slate-700 text-sm leading-relaxed">
+                 <span className="text-primary font-bold">Analysis:</span> Major road construction on Main St reduced foot traffic by 40%. However, online sales for local merchants increased by 15%, suggesting a pivot opportunity.
+              </p>
+           </div>
+        </div>
+      )
+    },
+    act: {
+      title: "Turn Insights into Impact",
+      desc: "Don't just watch—act. Generate grant proposals, policy briefs, and stakeholder presentations instantly to secure funding and drive initiatives.",
+      points: ["One-click grant reports", "Policy impact simulations", "Goal tracking & milestones"],
       visual: (
         <div className="h-full w-full p-8 flex items-center justify-center">
            <div className="w-48 aspect-[1/1.4] bg-white rounded shadow-xl border border-slate-100 relative transform rotate-[-5deg] transition-transform hover:rotate-0 duration-500 group">
@@ -80,31 +101,10 @@ const Features = () => {
         </div>
       )
     },
-    insights: {
-      title: "AI Narrative Engine",
-      desc: "Don't just show charts—tell the story. Our AI analyzes trends to write compelling summaries and identifies opportunities you might miss.",
-      points: ["Trend explanations", "Anomaly detection", "Success storytelling"],
-      visual: (
-        <div className="h-full w-full p-6 flex flex-col justify-center space-y-4">
-           <div className="bg-white border border-slate-100 rounded-2xl p-4 max-w-[85%] self-start rounded-tl-none shadow-sm">
-              <p className="text-slate-600 text-sm font-medium">Why did retail revenue drop in March?</p>
-           </div>
-           
-           <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 max-w-[90%] self-end rounded-tr-none relative shadow-sm">
-              <div className="absolute -top-3 -left-3 bg-primary text-white p-1.5 rounded-lg shadow-md">
-                 <Sparkles size={14} fill="white" />
-              </div>
-              <p className="text-slate-700 text-sm leading-relaxed">
-                 <span className="text-primary font-bold">Analysis:</span> Major road construction on Main St reduced foot traffic by 40%. However, online sales for local merchants increased by 15%, suggesting a pivot opportunity.
-              </p>
-           </div>
-        </div>
-      )
-    },
-    advising: {
-      title: "Advisory Session CRM",
-      desc: "Track every interaction. Organize session notes, set goals for local businesses, and monitor their progress over time in a unified interface.",
-      points: ["Session logging", "Outcome tracking", "Business health scores"],
+    collaborate: {
+      title: "Build Together",
+      desc: "Economic development is a team sport. Share dashboards, assign tasks, and track progress with your team and community stakeholders in one place.",
+      points: ["Shared workspaces", "Comment & annotation tools", "Public transparency portals"],
       visual: (
          <div className="h-full w-full p-6">
             <div className="space-y-3">
@@ -130,9 +130,9 @@ const Features = () => {
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-sm font-bold text-primary tracking-[0.2em] uppercase mb-4">The Toolkit</h2>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Powerful modules for <br/>modern governance</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Everything you need to <br/>grow your community</h2>
           <p className="text-lg text-slate-600">
-            CommuniData abstracts the complexity of economic data into a sleek, manageable interface.
+            From raw data to real-world results, we guide you through every step of the economic development journey.
           </p>
         </div>
 
